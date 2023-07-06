@@ -5,8 +5,6 @@ const urlCheck = /https?:\/\/(www\.)?[a-zA-Z\d-]+\.[\w\d\-.~:/?#[\]@!$&'()*+,;=]
 exports.signUpValidation = celebrate({
   body: Joi.object().keys({
     name: Joi.string().min(2).max(30),
-    about: Joi.string().min(2).max(30),
-    avatar: Joi.string().pattern(urlCheck),
     email: Joi.string().required().email(),
     password: Joi.string().required(),
   }),
@@ -19,34 +17,31 @@ exports.signInValidation = celebrate({
   }),
 });
 
-exports.userIdValidate = celebrate({
+exports.movieValidation = celebrate({
+  body: Joi.object().keys({
+    country: Joi.string().required(),
+    director: Joi.string().required(),
+    duration: Joi.number().required(),
+    year: Joi.string().required(),
+    description: Joi.string().required(),
+    image: Joi.string().required().pattern(urlCheck),
+    trailerLink: Joi.string().required().pattern(urlCheck),
+    thumbnail: Joi.string().required().pattern(urlCheck),
+    movieId: Joi.number().required(),
+    nameRU: Joi.string().required(),
+    nameEN: Joi.string().required(),
+  }),
+});
+
+exports.movieIdValidation = celebrate({
   params: Joi.object().keys({
     userId: Joi.string().required().hex().length(24),
   }),
 });
 
-exports.userValidate = celebrate({
+exports.userEditValidation = celebrate({
   body: Joi.object().keys({
+    email: Joi.string().email().required(),
     name: Joi.string().required().min(2).max(30),
-    about: Joi.string().required().min(2).max(30),
-  }),
-});
-
-exports.avatarValidate = celebrate({
-  body: Joi.object().keys({
-    avatar: Joi.string().required().pattern(urlCheck),
-  }),
-});
-
-exports.cardValidate = celebrate({
-  body: Joi.object().keys({
-    name: Joi.string().required().min(2).max(30),
-    link: Joi.string().required().pattern(urlCheck),
-  }),
-});
-
-exports.cardIdValidate = celebrate({
-  params: Joi.object().keys({
-    cardId: Joi.string().required().hex().length(24),
   }),
 });

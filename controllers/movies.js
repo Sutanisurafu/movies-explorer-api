@@ -13,6 +13,8 @@ module.exports.getMovies = (req, res, next) => {
 };
 
 module.exports.postMovie = (req, res, next) => {
+  console.log(req.body);
+
   const owner = req.user._id;
   Movie.create({ owner, ...req.body })
     .then((movie) => res.status(STATUS_CODES.OK).send(movie))

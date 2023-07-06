@@ -3,8 +3,11 @@ const {
   getUserInfo,
   updateUser,
 } = require('../controllers/users');
+const {
+  userEditValidation,
+} = require('../middlewares/validators');
 
 userRouter.get('/me', getUserInfo);
-userRouter.patch('/me', updateUser);
+userRouter.patch('/me', userEditValidation, updateUser);
 
 module.exports = userRouter;

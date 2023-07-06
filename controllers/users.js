@@ -24,7 +24,7 @@ module.exports.updateUser = (req, res, next) => {
     { email, name },
     {
       runValidators: true,
-      new: true, // обработчик then получит на вход обновлённую запись
+      new: true,
     },
   )
     .then((user) => res.send(user))
@@ -61,8 +61,6 @@ module.exports.createUser = (req, res, next) => {
       res.status(STATUS_CODES.CREATED).send({
         email: user.email,
         name: user.name,
-        about: user.about,
-        avatar: user.avatar,
       });
     })
     .catch((err) => {

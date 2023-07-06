@@ -4,9 +4,10 @@ const userRouter = require('./users');
 const movieRouter = require('./movies');
 const auth = require('../middlewares/auth');
 const { createUser, login } = require('../controllers/users');
+const { signUpValidation, signInValidation } = require('../middlewares/validators');
 
-router.post('/signin', login);
-router.post('/signup', createUser);
+router.post('/signin', signInValidation, login);
+router.post('/signup', signUpValidation, createUser);
 router.use('/users', auth, userRouter);
 router.use('/movies', auth, movieRouter);
 

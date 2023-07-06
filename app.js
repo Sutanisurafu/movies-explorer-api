@@ -6,7 +6,7 @@ const { errors } = require('celebrate');
 const router = require('./routes/index');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
-const { PORT = 3000 } = process.env;
+const { PORT = 3000, DB = 'mongodb://0.0.0.0:27017/bitfilmsdb' } = process.env;
 
 const app = express();
 
@@ -21,7 +21,7 @@ app.use(router);
 app.use(errorLogger);
 
 mongoose
-  .connect('mongodb://0.0.0.0:27017/bitfilmsdb', {
+  .connect(DB, {
     useNewUrlParser: true,
   })
   .then(() => {
