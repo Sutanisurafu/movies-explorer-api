@@ -1,1 +1,3 @@
-# movies-explorer-api
+Бэкэнд дипломной работы курса Веб-разработки ЯндексПрактикума.
+
+Адресс бекэнда: http://api.movies-lib.nomoreparties.sbs
